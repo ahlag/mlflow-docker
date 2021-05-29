@@ -53,6 +53,12 @@ docker stop $(docker ps -q --filter ancestor=mlflow)
 docker images
 ```
 
+### Remove
+To remove tag
+```
+docker rmi <REPOSITORY>:<TAG>
+```
+
 ## Amwazon ECR
 
 ### Checking
