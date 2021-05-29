@@ -76,6 +76,7 @@ docker tag <IMAGE ID> $HOSTNAME/$REPOSITORY_NAME:latest
 ```
 
 3. Push the tagged docker image to ECR
+
 Note: Please don't forget the repository name.
 ```
 docker push $HOSTNAME/$REPOSITORY_NAME:latest
