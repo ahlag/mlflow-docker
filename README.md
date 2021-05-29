@@ -11,7 +11,7 @@ docker build -t mlflow .
 2. To specify a Dockerfile
 
 ```
-docker build -t mlflow .
+docker build - < mlflow.dockerfile -t mlflow
 ```
 
 ## Run
