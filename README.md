@@ -21,7 +21,7 @@ docker run -p 5000:5000 mlflow
 ```
 
 ## Stop
-1. To stop immediately
+To stop immediately
 ```
 docker stop <containerId>
 ```
