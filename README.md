@@ -19,3 +19,29 @@ To run
 ```
 docker run -p 5000:5000 mlflow
 ```
+
+## Stop
+1. To stop immediately
+```
+docker stop <containerId>
+```
+or after an allocated time, let's say 60s
+```
+docker stop -t 60 <containerId>
+```
+
+## Check
+1. Check running containers
+```
+docker ps
+```
+
+2. Filter for container id given image name
+```
+docker ps -q --filter ancestor=mlflow
+```
+
+3. Chaining filtering and stopping
+```
+docker stop $(docker ps -q --filter ancestor=mlflow)
+```
