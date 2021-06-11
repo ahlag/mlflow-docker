@@ -54,9 +54,13 @@ docker images
 ```
 
 ### Remove
-To remove tag
+1. To remove tag
 ```
 docker rmi <REPOSITORY>:<TAG>
+```
+2. To remove image
+```
+docker rmi <IMAGE ID>
 ```
 
 ## Amwazon ECR
