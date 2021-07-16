@@ -50,9 +50,13 @@ docker images
 ```
 
 ### Remove
-To remove tag
+1. To remove tag
 ```
 docker rmi <REPOSITORY>:<TAG>
+```
+2. To remove image
+```
+docker rmi <IMAGE ID>
 ```
 
 ## Amwazon ECR
@@ -74,12 +78,12 @@ If you see Login Succeeded, you're good to go.
 
 2. Tag the image that will be pushed to ECR
 ```
-docker tag <IMAGE ID> $HOSTNAME/$REPOSITORY_NAME:latest
+docker tag <IMAGE ID> $HOSTNAME/$REPOSITORY_NAME:mlflow
 ```
 
 3. Push the tagged docker image to ECR
 
 Note: Please don't forget the repository name.
 ```
-docker push $HOSTNAME/$REPOSITORY_NAME:latest
+docker push $HOSTNAME/$REPOSITORY_NAME:mlflow
 ```
