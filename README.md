@@ -5,15 +5,11 @@ This repo contains a very simple Docker container to easily run [MLflow](https:/
 ## Docker
 
 ### Build
-1. To build from current directory
-```
-docker build -t mlflow .
-```
 
-2. To specify a Dockerfile
+1. To specify a Dockerfile
 
 ```
-docker build - < mlflow.dockerfile -t mlflow
+docker build -f ./mlflow.dockerfile  -t mlflow . 
 ```
 
 ### Run
