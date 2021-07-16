@@ -2,14 +2,14 @@ FROM python:3.8.0
 
 COPY ./requirements.txt ./requirements.txt
 
-ENV AWS_ACCESS_KEY_ID ${AWS_ACCESS_KEY_ID}
-ENV AWS_SECRET_ACCESS_KEY ${AWS_SECRET_ACCESS_KEY}
-ENV BUCKET ${BUCKET}
-ENV USERNAME ${USERNAME}
-ENV PASSWORD ${PASSWORD}
-ENV HOST ${HOST}
-ENV PORT ${PORT}
-ENV DATABASE ${DATABASE}
+# ENV AWS_ACCESS_KEY_ID ${AWS_ACCESS_KEY_ID}
+# ENV AWS_SECRET_ACCESS_KEY ${AWS_SECRET_ACCESS_KEY}
+# ENV BUCKET ${BUCKET}
+# ENV USERNAME ${USERNAME}
+# ENV PASSWORD ${PASSWORD}
+# ENV HOST ${HOST}
+# ENV PORT ${PORT}
+# ENV DATABASE ${DATABASE}
 
 RUN set -x \
     && apt-get update \
@@ -23,12 +23,13 @@ RUN set -x \
 RUN addgroup -gid 1000 www \
     && adduser -uid 1000 -H -D -s /bin/sh -G www www
 
-COPY nginx.conf.template /app/nginx.conf.template
+COPY nginx.conf.template /etc/nginx/nginx.conf
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./entry-point.sh /app/entry-point.sh
 
-COPY ./webserver.sh /app/webserver.sh
+COPY --chmod=777 ./webserver.sh /app/webserver.sh
+COPY --chmod=777 ./mlflow.sh /app/mlflow.sh
 
 EXPOSE 80
 
