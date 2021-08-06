@@ -91,5 +91,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: mlflow-service
         cluster: mlflow-cluster
         wait-for-service-stability: true
