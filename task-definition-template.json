@@ -9,8 +9,8 @@
             "essential": true,
             "environment": [
                 {
-                    "name": "AWS_SECRET_KEY_ID",
-                    "value": "${AWS_SECRET_KEY_ID}"
+                    "name": "AWS_ACCESS_KEY_ID",
+                    "value": "${AWS_ACCESS_KEY_ID}"
                 },
                 {
                     "name": "DATABASE",
