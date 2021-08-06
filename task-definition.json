@@ -2,7 +2,7 @@
     "containerDefinitions": [
         {
             "name": "mlflow-container",
-            "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG",
+            "image": "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
             "cpu": 0,
             "memoryReservation": 128,
             "portMappings": [],
@@ -14,39 +14,39 @@
                 },
                 {
                     "name": "DATABASE",
-                    "value": "$DATABASE"
+                    "value": "${DATABASE}"
                 },
                 {
                     "name": "PASSWORD",
-                    "value": "$PASSWORD"
+                    "value": "${PASSWORD}"
                 },
                 {
                     "name": "PORT",
-                    "value": "$PORT"
+                    "value": "${PORT}"
                 },
                 {
                     "name": "AWS_SECRET_ACCESS_KEY",
-                    "value": "$AWS_SECRET_ACCESS_KEY"
+                    "value": "${AWS_SECRET_ACCESS_KEY}"
                 },
                 {
                     "name": "BUCKET",
-                    "value": "$BUCKET"
+                    "value": "${BUCKET}"
                 },
                 {
                     "name": "HOST",
-                    "value": "$HOST"
+                    "value": "${HOST}"
                 },
                 {
                     "name": "USERNAME",
-                    "value": "$USERNAME"
+                    "value": "${USERNAME}"
                 },
                 {
                     "name": "MLFLOW_TRACKING_USERNAME",
-                    "value": "$MLFLOW_TRACKING_USERNAME"
+                    "value": "${MLFLOW_TRACKING_USERNAME}"
                 },
                 {
                     "name": "MLFLOW_TRACKING_PASSWORD",
-                    "value": "$MLFLOW_TRACKING_PASSWORD"
+                    "value": "${MLFLOW_TRACKING_PASSWORD}"
                 }
             ],
             "mountPoints": [],
@@ -55,7 +55,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "/ecs/mlflow-task",
-                    "awslogs-region": "$AWS_DEFAULT_REGION",
+                    "awslogs-region": "${AWS_DEFAULT_REGION}",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
