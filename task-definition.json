@@ -2,7 +2,7 @@
     "containerDefinitions": [
         {
             "name": "mlflow-container",
-            "image": "$IMAGE_REPO_NAME:$IMAGE_TAG",
+            "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG",
             "cpu": 0,
             "memoryReservation": 128,
             "portMappings": [],
@@ -10,7 +10,7 @@
             "environment": [
                 {
                     "name": "AWS_SECRET_KEY_ID",
-                    "value": "$AWS_SECRET_KEY_ID"
+                    "value": $AWS_SECRET_KEY_ID
                 },
                 {
                     "name": "DATABASE",
