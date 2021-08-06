@@ -50,22 +50,22 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    # - name: Build, tag, and push image to Amazon ECR
-    #   id: build-image
-    #   env:
-    #     # Enable BuildKit builds for COPY --chmod
-    #     DOCKER_BUILDKIT: 1
-    #     IMAGE_REPO_NAME: ${{ secrets.IMAGE_REPO_NAME }}
-    #     IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
-    #     AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-    #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-    #   run: |
-    #     # Build a docker container and
-    #     # push it to ECR so that it can
-    #     # be deployed to ECS.
-    #     docker build -f ./mlflow.dockerfile  -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG .
-    #     docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-    #     echo "::set-output name=image::$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG"
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        # Enable BuildKit builds for COPY --chmod
+        DOCKER_BUILDKIT: 1
+        IMAGE_REPO_NAME: ${{ secrets.IMAGE_REPO_NAME }}
+        IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
+        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -f ./mlflow.dockerfile  -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG .
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+        echo "::set-output name=image::$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG"
 
     - name: Substitute environment variables
       id: envsubst-action
@@ -89,11 +89,11 @@ jobs:
         input: task-definition-template.json
         output: task-definition.json
 
-    - name: Get version
-      id: vars
-      run: echo ::set-output name=version::$(cat task-definition.json)
-    - name: Test output
-      run: echo ${{ steps.vars.outputs.version }}
+    # - name: Get version
+    #   id: vars
+    #   run: echo ::set-output name=version::$(cat task-definition.json)
+    # - name: Test output
+    #   run: echo ${{ steps.vars.outputs.version }}
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
@@ -103,7 +103,7 @@ jobs:
         IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
         AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_KEY_ID: ${{ secrets.AWS_SECRET_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         BUCKET: ${{ secrets.BUCKET }}
         USERNAME: ${{ secrets.USERNAME }}
