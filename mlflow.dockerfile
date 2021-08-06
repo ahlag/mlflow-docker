@@ -13,6 +13,9 @@ ENV DATABASE ${DATABASE}
 ENV MLFLOW_TRACKING_USERNAME ${MLFLOW_TRACKING_USERNAME}
 ENV MLFLOW_TRACKING_PASSWORD ${MLFLOW_TRACKING_PASSWORD}
 
+# Enable BuildKit builds for COPY --chmod
+ENV DOCKER_BUILDKIT 1
+
 RUN set -x \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y \
