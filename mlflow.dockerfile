@@ -1,8 +1,6 @@
 FROM python:3.8.0
 
 COPY ./requirements.txt ./requirements.txt
-# Enable BuildKit builds for COPY --chmod
-COPY ./etc/docker/daemon.json ./etc/docker/daemon.json 
 
 ENV AWS_ACCESS_KEY_ID ${AWS_ACCESS_KEY_ID}
 ENV AWS_SECRET_ACCESS_KEY ${AWS_SECRET_ACCESS_KEY}
