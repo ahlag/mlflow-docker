@@ -77,4 +77,5 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         cluster: mlflow-cluster
+        service: mlflow-service
         wait-for-service-stability: true
